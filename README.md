@@ -45,6 +45,9 @@ waring: We are using webpack to do automization of project, stay free to change 
     * ... and I'll continue
 * Home page
 
+#### This page is on gh-github pages, to access it go to the link below:
+
+[https://michelribeiro.github.io/moodle_infnet](https://michelribeiro.github.io/moodle_infnet)
 
 Student: [michel.ribeiro@al.infnet.edu.br](mailto:michel.ribeiro@al.infnet.edu.br)
 
