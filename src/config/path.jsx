@@ -5,7 +5,7 @@ export const paths = {
 
 export const services = {
     SERVICE              : "&service=moodle_mobile_app",
-    MOODLEJSON           : "&moodlewsrestformat=json",
+    MOODLEJSON           : "moodlewsrestformat=json",
     FILTER               : "&moodlewssettingfilter=true",
     FILE_URL             : "&moodlewssettingfileurl=true"
 }

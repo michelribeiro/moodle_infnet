@@ -33,10 +33,11 @@ class Login extends Component {
 
       
 
-      buildUrl() {
+    buildUrl() {
         const pathLogin = paths.LOGIN+autentication.USERNAME+this.state.userid+autentication.PASSWORD+encodeURIComponent(this.state.password)+services.SERVICE;
         this.props.handleSubmit(pathLogin);
-      }    
+    }
+
 
     render() {
         if (this.props.redirect)

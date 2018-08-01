@@ -40,7 +40,7 @@ class App extends Component {
 	
     setApiLogin(result) {
         result.errorcode === "invalidlogin" ? this.setState({message: result.error.substring(0, 33),boxError: true}) : null
-        result.errorcode === "missingparam" ? this.setState({message: "Don't use # in your password!",boxError: true}) : null
+        result.errorcode === "missingparam" ? this.setState({message: "some thing wrong!",boxError: true}) : null
         !result.errorcode ? (
 			this.setState(
 				{
