@@ -1,0 +1,17 @@
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+
+  .box_user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    img {
+      margin-right: 10px;
+      max-width: 35px;
+      max-height: 35px;
+    }
+  }
+}
