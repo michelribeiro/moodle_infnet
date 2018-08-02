@@ -70,9 +70,6 @@ class Home extends Component {
             this.setState({redirect: true})
         } else {
             this.getDataStudent();
-            if(!this.state.userid) {
-                this.fetchDataClassesStudent();
-            }
         }
     }
 
