@@ -25,22 +25,22 @@ class Home extends Component {
         if(token !="") {
             localStorage.setItem("token", JSON.stringify(token));
             let dataStudent = paths.PATH_BASE+services.MOODLEJSON+autentication.WSTOKEN+token+wsfunction.DATA_USER;
-            
             fetch(dataStudent)
             .then(response => response.json())
-            .then(data => 
-                this.setState(
-                    {
-                        data: data
-                    }
-                )
-            )
+            .then(data => this.getInfoUser(data))
         }
     }
 
+    getInfoUser(data) {
+        this.setState(
+            {
+                data: data
+            }
+        )
+        this.fetchDataClassesStudent();
+    }
+
     fetchDataClassesStudent() {
-        console.log(paths.PATH_BASE+autentication.WSTOKEN+ JSON.parse(localStorage.getItem('token')) +"&"+services.MOODLEJSON+wsfunction.COLLEGE_SUBJECTS+autentication.USERID+this.state.data.userid)
-        
         fetch(paths.PATH_BASE+autentication.WSTOKEN+ JSON.parse(localStorage.getItem('token')) +"&"+services.MOODLEJSON+wsfunction.COLLEGE_SUBJECTS+autentication.USERID+this.state.data.userid)
         .then(response => response.json())
         .then(classes => this.setApiStudentClass(classes))
@@ -70,7 +70,9 @@ class Home extends Component {
             this.setState({redirect: true})
         } else {
             this.getDataStudent();
-            this.fetchDataClassesStudent();
+            if(!this.state.userid) {
+                this.fetchDataClassesStudent();
+            }
         }
     }
 
