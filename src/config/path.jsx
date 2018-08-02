@@ -22,3 +22,10 @@ export const autentication = {
     WSTOKEN              : "&wstoken=",
     USERID               : "&userid="
 }
+
+// detalhe da materia
+// ?wstoken=fcfb8aabee4b1933546e15b17d9e6c6e&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments&moodlewssettingfilter=true&moodlewssettingfileurl=true&courseid=1595
+
+// lista os TPs da materia com o courseids[0]=1591
+// https://lms.infnet.edu.br/moodle/webservice/rest/server.php?wstoken=fcfb8aabee4b1933546e15b17d9e6c6e&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments&courseids[0]=1591&moodlewssettingfileurl=true&moodlewssettingfilter=true
+// duedate que traz a data de entrega dos TPs

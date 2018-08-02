@@ -71,6 +71,7 @@ class Home extends Component {
         } else {
             this.getDataStudent();
         }
+        this.convertTimeStamp();
     }
 
 	componentWillUpdate(nextProps, nextState) {
@@ -80,6 +81,12 @@ class Home extends Component {
 
         localStorage.setItem("classes", JSON.stringify(nextState.classes));
         localStorage.setItem("userid", JSON.stringify(nextState.data.userid));
+    }
+
+    // para converter as datas dos TPs
+    convertTimeStamp() {
+        let convDate = new Date(1534215300 * 1000);
+        console.log(convDate.toLocaleDateString())
     }
 
     render() {
