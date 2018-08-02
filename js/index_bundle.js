@@ -11361,11 +11361,6 @@ var Home = function (_Component) {
                             _reactBootstrap.Col,
                             { xs: 12, md: 12 },
                             _react2.default.createElement(
-                                'p',
-                                null,
-                                data.userid
-                            ),
-                            _react2.default.createElement(
                                 _reactBootstrap.Panel,
                                 null,
                                 _react2.default.createElement(
