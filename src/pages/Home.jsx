@@ -100,7 +100,7 @@ class Home extends Component {
 
                     <Row className="show-grid">
                         <Col xs={12} md={12}>
-                            <p>{data.userid}</p>
+
                         <Panel>
                             <Panel.Heading>Your classes</Panel.Heading>
                             <Panel.Body>
