@@ -13,7 +13,7 @@ Access to Moodle for INFNET Students
 * LocalStorage
 ---
 
-#### Setps to start
+#### Steps to start
 * Make a branch clone ```https://github.com/michelribeiro/moodle_infnet.git```
 
 #### Go to the terminal in the same place that you made the clone
