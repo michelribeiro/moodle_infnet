@@ -42,8 +42,8 @@ waring: We are using webpack to do automization of project, stay free to change 
     * This page you entry with your user name `name.lastname` and your password, the same that you use in Infnet Moodle;
     * You'll go to home page;
     * In this page appear only your username and you picture in top of page.
-    * ... and I'll continue
 * Home page
+   * ... and I'll continue
 
 #### This page is on gh-pages, to access it go to the link below:
 
