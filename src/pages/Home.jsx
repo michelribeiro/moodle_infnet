@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import {Glyphicon, Grid, Row, Col, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { Glyphicon, Grid, Row, Col, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Alert from 'react-bootstrap/lib/Alert';
 import Header from "../components/Header"
+import PanelClassesDetail from "../components/panelClassDetail";
 import { Redirect } from "react-router-dom";
 import { paths, autentication, services, wsfunction } from "../config/path";
-import { format } from "util";
+
 
 class Home extends Component {
 
@@ -12,45 +13,46 @@ class Home extends Component {
         super(props);
 
         this.state = {
-            data      : '',
-            redirect  : false,
-            token     : '',
-            classes   : '',
-            userid    : ''
+            data: '',
+            redirect: false,
+            token: '',
+            classes: '',
+            userid: ''
         }
     }
 
-	getDataStudent() {
+    getDataStudent() {
         let token = this.props.UserData;
-        if(token !="") {
+        if (token != "") {
             localStorage.setItem("token", JSON.stringify(token));
-            let dataStudent = paths.PATH_BASE+services.MOODLEJSON+autentication.WSTOKEN+token+wsfunction.DATA_USER;
+            let dataStudent = paths.PATH_BASE + services.MOODLEJSON + autentication.WSTOKEN + token + wsfunction.DATA_USER;
             fetch(dataStudent)
-            .then(response => response.json())
-            .then(data => this.getInfoUser(data))
+                .then(response => response.json())
+                .then(studentData => this.getInfoUser(studentData))
+                .catch(error => console.log("Error: ", error))
         }
     }
 
-    getInfoUser(data) {
+    getInfoUser(studentData) {
         this.setState(
             {
-                data: data
+                data: studentData
             }
         )
         this.fetchDataClassesStudent();
     }
 
     fetchDataClassesStudent() {
-        fetch(paths.PATH_BASE+autentication.WSTOKEN+ JSON.parse(localStorage.getItem('token')) +"&"+services.MOODLEJSON+wsfunction.COLLEGE_SUBJECTS+autentication.USERID+this.state.data.userid)
-        .then(response => response.json())
-        .then(classes => this.setApiStudentClass(classes))
-        .catch(error => console.log("Error: ", error))
+        fetch(paths.PATH_BASE + autentication.WSTOKEN + JSON.parse(localStorage.getItem('token')) + "&" + services.MOODLEJSON + wsfunction.COLLEGE_SUBJECTS + autentication.USERID + this.state.data.userid)
+            .then(response => response.json())
+            .then(items => this.setApiStudentClass(items))
+            .catch(error => console.log("Error: ", error))
     }
 
-    setApiStudentClass(classes) {
+    setApiStudentClass(items) {
         this.setState(
             {
-                classes: classes
+                classes: items
             }
         )
     }
@@ -64,18 +66,18 @@ class Home extends Component {
             classes: JSON.parse(localStorage.getItem('classes'))
         })
     }
-    
+
     componentDidMount() {
-        if(!localStorage.getItem('UserData')) {
-            this.setState({redirect: true})
+        if (!localStorage.getItem('UserData')) {
+            this.setState({ redirect: true })
         } else {
             this.getDataStudent();
         }
         this.convertTimeStamp();
     }
 
-	componentWillUpdate(nextProps, nextState) {
-        
+    componentWillUpdate(nextProps, nextState) {
+
         localStorage.setItem("UserData", JSON.stringify(nextState.data));
         localStorage.setItem("UserDataDate", Date.now());
 
@@ -86,14 +88,13 @@ class Home extends Component {
     // para converter as datas dos TPs
     convertTimeStamp() {
         let convDate = new Date(1534215300 * 1000);
-        console.log(convDate.toLocaleDateString())
+        console.log("home",convDate.toLocaleDateString())
     }
 
     render() {
-        
-        const { data } = this.state;
 
-        if(this.state.redirect) {
+        const { data } = this.state;
+        if (this.state.redirect) {
             return <Redirect to='/' />
         }
         else {
@@ -102,30 +103,8 @@ class Home extends Component {
                 <Grid>
                     <Header dataUser={data} />
 
-                    <Row className="show-grid">
-                        <Col xs={12} md={12}>
-
-                        <Panel>
-                            <Panel.Heading>Your classes</Panel.Heading>
-                            <Panel.Body>
-                                <ListGroup>
-
-                                    {
-                                        this.state.classes.length > 0 ?
-                                        this.state.classes.filter((visible) => { return visible.category === 441}).map((item, key) => {
-                                            return (
-                                                <ListGroupItem key={key}>{item.fullname}</ListGroupItem>
-                                            )
-                                        }) : null
-                                    }
-                                    
-
-                                </ListGroup>
-                            </Panel.Body>
-                        </Panel>
-
-
-                        </Col>
+                    <Row>
+                        <PanelClassesDetail classes={this.state.classes} />
                     </Row>
 
 

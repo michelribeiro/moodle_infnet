@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Panel, FormGroup, FormControl, HelpBlock, Alert } from 'react-bootstrap';
+import { Panel, FormGroup, FormControl, Button, HelpBlock, Alert } from 'react-bootstrap';
 import "../scss/login";
 import { paths, services, autentication } from "../config/path";
 // import Glyphicon from 'react-bootstrap/lib/Glyphicon';
@@ -33,7 +33,8 @@ class Login extends Component {
 
       
 
-    buildUrl() {
+    buildUrl(e) {
+        e.preventDefault();
         const pathLogin = paths.LOGIN+autentication.USERNAME+this.state.userid+autentication.PASSWORD+encodeURIComponent(this.state.password)+services.SERVICE;
         this.props.handleSubmit(pathLogin);
     }
@@ -57,7 +58,7 @@ class Login extends Component {
                             Access to infnet moodle data
                         </Panel.Heading>
                         <Panel.Body>
-                            <form>
+                            <form onSubmit={this.buildUrl.bind(this)}>
                                 <FormGroup
                                     controlId="userid"
                                     bsSize="large">
@@ -82,7 +83,8 @@ class Login extends Component {
                                         placeholder="Password" />
                                     <FormControl.Feedback />
                                 </FormGroup>
-                                <a className="btn btn-primary btn-lg btn-block" disabled={this.state.formValid} onClick={this.buildUrl.bind(this)}>Login</a>
+                                {/* <a className="btn btn-primary btn-lg btn-block" disabled={this.state.formValid} onClick=> */}
+                                <Button bsStyle="primary" bsSize="large" block type="submit">Login</Button>
                             </form>
                         </Panel.Body>
                     </Panel>

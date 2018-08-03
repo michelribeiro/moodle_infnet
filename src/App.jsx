@@ -48,7 +48,8 @@ class App extends Component {
 					userProfile: result.token,
 					redirect: true
 				}
-			)) : null
+			)
+		) : null
 	}
 
     showError(error) {
