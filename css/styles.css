@@ -3,10 +3,22 @@ header {
   padding-bottom: 20px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px; }
+  header .headerTitle {
+    text-align: center;
+    font-size: 16px; }
+    @media screen and (min-width: 768px) {
+      header .headerTitle {
+        text-align: left; } }
   header .box_user {
     display: flex;
     align-items: center;
-    justify-content: flex-end; }
+    justify-content: flex-start;
+    padding-top: 20px; }
+    @media screen and (min-width: 768px) {
+      header .box_user {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; } }
     header .box_user img {
       margin-right: 10px;
       max-width: 35px;
