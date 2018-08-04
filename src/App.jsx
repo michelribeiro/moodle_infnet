@@ -39,8 +39,23 @@ class App extends Component {
 	}
 	
     setApiLogin(result) {
-        result.errorcode === "invalidlogin" ? this.setState({message: result.error.substring(0, 33),boxError: true}) : null
-        result.errorcode === "missingparam" ? this.setState({message: "Don't use # in your password!",boxError: true}) : null
+
+		result.errorcode === "invalidlogin" ?
+			this.setState(
+				{
+					message: (result.error.substring(0, 33)),
+					boxError: true
+				}
+			) : null
+
+		result.errorcode === "missingparam" ?
+			this.setState(
+				{
+					message: "some thing wrong!",
+					boxError: true
+				}
+			) : null
+		
         !result.errorcode ? (
 			this.setState(
 				{
@@ -48,7 +63,10 @@ class App extends Component {
 					userProfile: result.token,
 					redirect: true
 				}
-			)) : null
+			)
+		) : null
+
+		
 	}
 
     showError(error) {
@@ -70,7 +88,7 @@ class App extends Component {
 				<HashRouter>
 					<div>
 						<Route exact path="/home" render={(props) => (
-							<Home UserData={this.state.userProfile} redirect={this.state.redirect} />
+							<Home userData={this.state.userProfile} redirect={this.state.redirect} />
 						)} />
 
 						<Route exact path="/" render={(props) => (

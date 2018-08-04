@@ -2,11 +2,28 @@ header {
   padding-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+
+  .headerTitle {
+    text-align: center;
+    font-size: 16px;
+
+    @media screen and (min-width: 768px) {
+      text-align: left;
+    }
+  }
 
   .box_user {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    padding-top: 20px;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
     
     img {
       margin-right: 10px;

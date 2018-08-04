@@ -10,14 +10,15 @@ class Header extends Component {
         return (
             <header>
                 <Row>
-                    <Col xs={12} sm={8}>
-                    ADS
-                    <small>/ Moodle Data - Infnet</small>
+                    <Col xs={12} sm={8} className="headerTitle">
+                    <p>ADS
+                        <small>/ Moodle Data - Infnet</small>
+                    </p>
                     </Col>
                     <Col xs={12} sm={4}>
                         <section className="box_user">
                             <Image src={dataUser.userpictureurl} circle />
-                            <p>Olá {dataUser.fullname}.</p>
+                            <p>Olá {dataUser.firstname}.</p>
                         </section>
                     </Col>
                 </Row>

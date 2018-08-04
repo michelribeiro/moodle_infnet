@@ -13,7 +13,7 @@ Access to Moodle for INFNET Students
 * LocalStorage
 ---
 
-#### Setps to start
+#### Steps to start
 * Make a branch clone ```https://github.com/michelribeiro/moodle_infnet.git```
 
 #### Go to the terminal in the same place that you made the clone
@@ -42,9 +42,12 @@ waring: We are using webpack to do automization of project, stay free to change 
     * This page you entry with your user name `name.lastname` and your password, the same that you use in Infnet Moodle;
     * You'll go to home page;
     * In this page appear only your username and you picture in top of page.
-    * ... and I'll continue
 * Home page
+   * ... and I'll continue
 
+#### This page is on gh-pages, to access it go to the link below:
+
+[https://michelribeiro.github.io/moodle_infnet](https://michelribeiro.github.io/moodle_infnet)
 
 Student: [michel.ribeiro@al.infnet.edu.br](mailto:michel.ribeiro@al.infnet.edu.br)
 
