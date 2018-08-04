@@ -13,20 +13,19 @@ class Home extends Component {
         super(props);
 
         this.state = {
+            token: '',
             data: '',
             redirect: false,
-            token: '',
             classes: '',
             userid: ''
         }
     }
-
+    //pegar dados do estudante (nome e userid)
     getDataStudent() {
-        let token = this.props.UserData;
+        let token = this.props.userData;
         if (token != "") {
-            localStorage.setItem("token", JSON.stringify(token));
-            let dataStudent = paths.PATH_BASE + services.MOODLEJSON + autentication.WSTOKEN + token + wsfunction.DATA_USER;
-            fetch(dataStudent)
+            sessionStorage.setItem("token", JSON.stringify(token));
+            fetch(paths.PATH_BASE + services.MOODLEJSON + autentication.WSTOKEN + token + wsfunction.DATA_USER)
                 .then(response => response.json())
                 .then(studentData => this.getInfoUser(studentData))
                 .catch(error => console.log("Error: ", error))
@@ -42,8 +41,9 @@ class Home extends Component {
         this.fetchDataClassesStudent();
     }
 
+    // pego a lista de Materias
     fetchDataClassesStudent() {
-        fetch(paths.PATH_BASE + autentication.WSTOKEN + JSON.parse(localStorage.getItem('token')) + "&" + services.MOODLEJSON + wsfunction.COLLEGE_SUBJECTS + autentication.USERID + this.state.data.userid)
+        fetch(paths.PATH_BASE + autentication.WSTOKEN + JSON.parse(sessionStorage.getItem('token')) + "&" + services.MOODLEJSON + wsfunction.COLLEGE_SUBJECTS + autentication.USERID + this.state.data.userid)
             .then(response => response.json())
             .then(items => this.setApiStudentClass(items))
             .catch(error => console.log("Error: ", error))
@@ -58,17 +58,18 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        localStorage.getItem('UserData') && this.setState({
-            data: JSON.parse(localStorage.getItem('UserData'))
+        sessionStorage.getItem('UserData') && this.setState({
+            data: JSON.parse(sessionStorage.getItem('UserData'))
         })
         // se comentar as linhas abaixo irão ver o serviço indo buscar na api via http e não no cache.
-        localStorage.getItem('classes') && this.setState({
-            classes: JSON.parse(localStorage.getItem('classes'))
+        sessionStorage.getItem('classes') && this.setState({
+            classes: JSON.parse(sessionStorage.getItem('classes'))
         })
     }
 
     componentDidMount() {
-        if (!localStorage.getItem('UserData')) {
+        if (!sessionStorage.getItem('UserData') ||
+            !sessionStorage.getItem('classes')) {
             this.setState({ redirect: true })
         } else {
             this.getDataStudent();
@@ -78,11 +79,11 @@ class Home extends Component {
 
     componentWillUpdate(nextProps, nextState) {
 
-        localStorage.setItem("UserData", JSON.stringify(nextState.data));
-        localStorage.setItem("UserDataDate", Date.now());
+        sessionStorage.setItem("UserData", JSON.stringify(nextState.data));
+        sessionStorage.setItem("UserDataDate", Date.now());
 
-        localStorage.setItem("classes", JSON.stringify(nextState.classes));
-        localStorage.setItem("userid", JSON.stringify(nextState.data.userid));
+        sessionStorage.setItem("classes", JSON.stringify(nextState.classes));
+        sessionStorage.setItem("userid", JSON.stringify(nextState.data.userid));
     }
 
     // para converter as datas dos TPs
@@ -93,7 +94,8 @@ class Home extends Component {
 
     render() {
 
-        const { data } = this.state;
+        const { data, classes } = this.state;
+
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
@@ -102,9 +104,8 @@ class Home extends Component {
             return (
                 <Grid>
                     <Header dataUser={data} />
-
                     <Row>
-                        <PanelClassesDetail classes={this.state.classes} />
+                        <PanelClassesDetail classes={classes} />
                     </Row>
 
 

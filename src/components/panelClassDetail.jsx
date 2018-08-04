@@ -6,9 +6,8 @@ class PanelClassesDetail extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            list: ''
+            item: []
         }
     }
 
@@ -16,21 +15,31 @@ class PanelClassesDetail extends Component {
         return name
     }
 
+    componentDidMount() {
+
+    }
+
+    filterClasses(classes) {
+
+        return  classes.filter((i) => {
+            return i.category === 441 
+        })
+    }
+
     render() {
         const { classes } = this.props;
         return (
             <div>
-
                 {
                     classes.length > 0 ?
-                        classes.filter((visible) => { return visible.category === 441 }).map((item, key) => {
+                        this.filterClasses(classes).map((item, key) => {
                             return (
                                 <Col xs={12} md={4} key={key}>
                                     <Panel>
                                         <Panel.Heading>{this.changeNameClass(item.fullname)}</Panel.Heading>
                                         <Panel.Body>
                                             <ListGroup>
-                                                <ListTps listTp={item} />
+                                                <ListTps key_id={key} listTp={item} />
                                             </ListGroup>
                                         </Panel.Body>
                                     </Panel>
