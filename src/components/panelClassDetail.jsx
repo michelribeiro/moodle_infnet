@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Col, Panel, ListGroup } from 'react-bootstrap';
+import { Col, Panel, ListGroup, Accordion } from 'react-bootstrap';
+
 import ListTps from './listTps'
 
 class PanelClassesDetail extends Component {
@@ -22,7 +23,7 @@ class PanelClassesDetail extends Component {
     filterClasses(classes) {
 
         return  classes.filter((i) => {
-            return i.category === 441 
+            return i.hidden === false 
         })
     }
 
