@@ -36,7 +36,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^2.7.0",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "dev": "webpack-dev-server --public localhost:8080",
